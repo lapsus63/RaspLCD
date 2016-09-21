@@ -41,10 +41,6 @@
         <jar destfile="${jar.name}">
             <fileset dir="${bin}" />
             <restrict>
-<<<<<<< HEAD
-=======
-                <name name="**/*.class"/>
->>>>>>> branch 'master' of https://git.infovergne.com/RaspLCD.git
                 <archives>
                     <zips>
                         <fileset dir="lib"  includes="**/*.jar"/>
