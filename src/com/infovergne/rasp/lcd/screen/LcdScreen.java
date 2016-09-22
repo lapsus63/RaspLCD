@@ -63,9 +63,12 @@ public class LcdScreen extends AScreen {
 	@Override
 	public void setMessageAt(int row, String message) {
 		if (message == null) {
-			message = LcdUtils.buildRow("", getCols(), SwingConstants.CENTER, BLANK);
+			message = "";
 		}
-		message = message.trim();
+		message = LcdUtils.buildRow(message, getCols(), SwingConstants.CENTER, BLANK);
+		if (row < 0 || row > getRows()) {
+			return;
+		}
 		Lcd.lcdPosition(lcdHandle, 0, row);
 		Lcd.lcdPuts(lcdHandle, message);		
 	}

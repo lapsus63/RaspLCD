@@ -22,13 +22,18 @@ public class OutScreen extends AScreen {
 		for (int i = 0 ; i < rows ; i++) {
 			Arrays.fill(screen[i], BLANK);
 		}
+		try {
+			Thread.sleep(1000);	
+		} catch (Exception e) {
+		}
 	}
 	
 	@Override
 	public void setMessageAt(int row, String message) {
 		if (message == null) {
-			message = LcdUtils.buildRow("", getCols(), SwingConstants.CENTER, BLANK);
+			message = "";
 		}
+		message = LcdUtils.buildRow(message, getCols(), SwingConstants.CENTER, BLANK);
 		if (row < 0 || row > getRows()) {
 			return;
 		}
