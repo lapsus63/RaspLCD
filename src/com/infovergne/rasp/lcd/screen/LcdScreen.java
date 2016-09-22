@@ -1,24 +1,20 @@
-package com.infovergne.rasp.lcd;
+package com.infovergne.rasp.lcd.screen;
 
+import javax.swing.SwingConstants;
+
+import com.infovergne.rasp.lcd.util.LcdUtils;
 import com.pi4j.wiringpi.Gpio;
 import com.pi4j.wiringpi.Lcd;
 
-public class LcdController {
+public class LcdScreen extends AScreen {
 	
-	private final int rows;
-	private final int cols;
-	private final int bits = 4;
+	private static final char BLANK = ' ';
 
+	private final int bits = 4;
 	private int lcdHandle = -1;
-	private boolean initialized = false;
 	
-	public LcdController(int rows, int cols) {
-		this.rows = rows;
-		this.cols = cols;
-	}
-	
-	public boolean isInitialized() {
-		return initialized;
+	public LcdScreen(int rows, int cols) {
+		super(rows, cols);
 	}
 	
 	public void initialize() {
@@ -46,7 +42,7 @@ public class LcdController {
 				0, // LCD data bit 6 (set to 0 if using 4 bit communication)
 				0, // LCD data bit 7 (set to 0 if using 4 bit communication)
 				0); // LCD data bit 8 (set to 0 if using 4 bit communication)
-		if (this.lcdHandle == -1) {
+		if (lcdHandle == -1) {
 			System.err.println("Failed to initialize LCD system");
 			return;
 		} else {
@@ -55,29 +51,33 @@ public class LcdController {
 		initialized = true;
 	}
 	
-	public void sendMessage(boolean clear, String... messages) {
-		if (!initialized) {
-			System.err.println("LCD system not properly initialized ; run initialize at first.");
-			return;
+	@Override
+	public void cleanScreen() {
+		Lcd.lcdClear(lcdHandle);
+		try {
+			Thread.sleep(1000);	
+		} catch (Exception e) {
 		}
-		if (clear) {
-			Lcd.lcdClear(lcdHandle);
-			try {
-				Thread.sleep(1000);	
-			} catch (Exception e) {
-				
-			}
+	}
+	
+	@Override
+	public void setMessageAt(int row, String message) {
+		if (message == null) {
+			message = LcdUtils.buildRow("", getCols(), SwingConstants.CENTER, BLANK);
 		}
-		
+		message = message.trim();
+		Lcd.lcdPosition(lcdHandle, 0, row);
+		Lcd.lcdPuts(lcdHandle, message);		
+	}
+	
+	@Override
+	public void initView() {
 		Lcd.lcdHome(lcdHandle);
-		if (messages != null) {
-			for (int  i = 0 ; i < messages.length && i < rows ; i++) {
-				String message = messages[i] == null ? "" : messages[i].trim();
-				Lcd.lcdPosition(lcdHandle, 0, i);
-				Lcd.lcdPuts(lcdHandle, message);
-			}
-		}
-		try { Thread.sleep(3000); } catch (Exception e) {}
+	}
+	
+	@Override
+	public void commitView() {
+		//
 	}
 	
 }
