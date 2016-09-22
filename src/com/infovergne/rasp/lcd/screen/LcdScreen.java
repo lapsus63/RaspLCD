@@ -53,11 +53,11 @@ public class LcdScreen extends AScreen {
 	
 	@Override
 	public void cleanScreen() {
-		Lcd.lcdClear(lcdHandle);
-		try {
-			Thread.sleep(1000);	
-		} catch (Exception e) {
-		}
+//		Lcd.lcdClear(lcdHandle);
+//		try {
+//			Thread.sleep(1000);	
+//		} catch (Exception e) {
+//		}
 	}
 	
 	@Override

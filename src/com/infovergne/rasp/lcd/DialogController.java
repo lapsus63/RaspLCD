@@ -75,7 +75,7 @@ public class DialogController implements Observer {
 	
 	private AMessageController createMessageMarquee() {
 		if (msgMarquee != null) { msgMarquee.deleteObserver(this); }
-		this.msgMarquee = new MarqueeController(ctrlLcd, 40, 500L, 10, TimeUnit.SECONDS);
+		this.msgMarquee = new MarqueeController(ctrlLcd, 40, 200L, 10, TimeUnit.SECONDS);
 		this.msgMarquee.add(LcdUtils.buildRow("Welcome TEST Marquee Message",40,SwingConstants.RIGHT, '#'))
 			.add(LcdUtils.buildRow("",40,SwingConstants.CENTER, '-'))
 			.add(LcdUtils.buildRow("Marqueeing",40,SwingConstants.LEFT, '.'))
