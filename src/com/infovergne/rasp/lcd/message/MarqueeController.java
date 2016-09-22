@@ -42,6 +42,7 @@ public class MarqueeController extends AMessageController {
 					slip++;
 					slip = slip % marqueeWidth;
 				}
+				MarqueeController.super.finished();
 			}
 		}.start();
 		
@@ -50,7 +51,6 @@ public class MarqueeController extends AMessageController {
 	@Override
 	public void finished() {
 		continueMarquee = false;
-		super.finished();
 	}
 	
 }
