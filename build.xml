@@ -15,7 +15,12 @@
         <pathelement location="lib/pi4j-gpio-extension.jar"/>
         <pathelement location="lib/pi4j-service.jar"/>
         <pathelement location="lib/commons-lang3-3.4.jar"/>
-    </path>
+        <pathelement location="lib/sl4j-api-1.7.21.jar"/>
+        <pathelement location="lib/sl4j-log4j12-1.7.21.jar"/>
+        <pathelement location="lib/log4j-1.2.17.jar"/>
+        <pathelement location="lib/api/gson-2.3.1.jar"/>
+        <pathelement location="lib/api/twitter4j-core-4.0.4.jar"/>
+	</path>
     
     <target name="clean">
         <delete dir="${bin}"/>
@@ -23,7 +28,7 @@
 
     <target name="init">
         <mkdir dir="${bin}"/>
-        <copy includeemptydirs="false" todir="{bin}">
+        <copy includeemptydirs="false" todir="${bin}">
             <fileset dir="src">
                 <exclude name="**/*.java"/>
             </fileset>
@@ -32,7 +37,7 @@
     
     <target depends="init" name="build">
         <echo message="${ant.project.name}: ${ant.file}"/>
-        <javac debug="true" debuglevel="${debuglevel}" destdir="${bin}" includeantruntime="false" source="${source}" target="${target}">
+        <javac encoding="Cp1252" debug="true" debuglevel="${debuglevel}" destdir="${bin}" includeantruntime="false" source="${source}" target="${target}">
             <src path="src"/>
             <classpath refid="Rasp_LCD.classpath"/>
         </javac>

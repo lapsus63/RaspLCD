@@ -2,10 +2,16 @@ package com.infovergne.rasp.lcd.screen;
 
 import javax.swing.SwingConstants;
 
-import com.infovergne.rasp.lcd.util.LcdUtils;
+import com.infovergne.rasp.lcd.message.Tence;
 import com.pi4j.wiringpi.Gpio;
 import com.pi4j.wiringpi.Lcd;
 
+/**
+ * Raspberry's LCD screen output.
+ * <p>This is the default screen</p>
+ * <p>Uses pi4j to configure GPIO pins</p>
+ * @author Olivier
+ */
 public class LcdScreen extends AScreen {
 	
 	private static final char BLANK = ' ';
@@ -61,16 +67,15 @@ public class LcdScreen extends AScreen {
 	}
 	
 	@Override
-	public void setMessageAt(int row, String message) {
+	public void setMessageAt(int row, Tence message) {
 		if (message == null) {
-			message = "";
+			message = new Tence("", getCols(), SwingConstants.LEFT, BLANK);
 		}
-		message = LcdUtils.buildRow(message, getCols(), SwingConstants.CENTER, BLANK);
 		if (row < 0 || row > getRows()) {
 			return;
 		}
 		Lcd.lcdPosition(lcdHandle, 0, row);
-		Lcd.lcdPuts(lcdHandle, message);		
+		Lcd.lcdPuts(lcdHandle, message.toString());		
 	}
 	
 	@Override

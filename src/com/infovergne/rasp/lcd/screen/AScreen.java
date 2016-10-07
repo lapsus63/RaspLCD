@@ -1,6 +1,13 @@
 package com.infovergne.rasp.lcd.screen;
 
+import com.infovergne.rasp.lcd.message.Tence;
 
+/**
+ * Defines an output stream.
+ * Could be System.out, or the LCD screen.
+ * <p>A Screen is delimitated by a row count and a column count</p>
+ * @author Olivier
+ */
 public abstract class AScreen {
 	
 	protected final int rows;
@@ -30,11 +37,11 @@ public abstract class AScreen {
 	
 	protected void checkInit() throws IllegalStateException {
 		if (!initialized) {
-			throw new IllegalStateException("LCD system not properly initialized ; run initialize at first.");
+			throw new IllegalStateException("System not properly initialized ; you must call initialize first.");
 		}
 	}
 	
-	public void sendMessage(boolean clear, String... messages) {
+	public void sendMessage(boolean clear, Tence... messages) {
 		if (clear) {
 			cleanScreen();
 		}
@@ -48,7 +55,7 @@ public abstract class AScreen {
 	}
 
 
-	public abstract void setMessageAt(int row, String message);
+	public abstract void setMessageAt(int row, Tence message);
 
 	public abstract void initView();
 

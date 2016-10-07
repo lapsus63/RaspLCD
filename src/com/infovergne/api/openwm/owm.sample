@@ -1,0 +1,40 @@
+{"city":{"id":1851632,"name":"Shuzenji",
+"coord":{"lon":138.933334,"lat":34.966671},
+"country":"JP",
+"cod":"200",
+"message":0.0045,
+"cnt":38,
+"list":[{
+        "dt":1406106000,
+        "main":{
+            "temp":298.77,
+            "temp_min":298.77,
+            "temp_max":298.774,
+            "pressure":1005.93,
+            "sea_level":1018.18,
+            "grnd_level":1005.93,
+            "humidity":87,
+            "temp_kf":0.26},
+        "weather":[{"id":804,"main":"Clouds","description":"overcast clouds","icon":"04d"}],
+        "clouds":{"all":88},
+        "wind":{"speed":5.71,"deg":229.501},
+        "sys":{"pod":"d"},
+        "dt_txt":"2014-07-23 09:00:00"}
+        ,{
+        "dt":1506106000,
+        "main":{
+            "temp":398.77,
+            "temp_min":398.77,
+            "temp_max":398.774,
+            "pressure":2005.93,
+            "sea_level":2018.18,
+            "grnd_level":2005.93,
+            "humidity":97,
+            "temp_kf":1.26},
+        "weather":[{"id":904,"main":"Thunder","description":"undercast clouds","icon":"04d"}],
+        "clouds":{"all":98},
+        "wind":{"speed":6.71,"deg":329.501},
+        "sys":{"pod":"e"},
+        "dt_txt":"2014-07-24 09:00:00"}
+        ]}
+}

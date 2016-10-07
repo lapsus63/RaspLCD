@@ -6,6 +6,11 @@ import java.util.concurrent.TimeUnit;
 
 import com.infovergne.rasp.lcd.screen.AScreen;
 
+/**
+ * Displays n lines of messages and scrolls horizontally.
+ * The speed of scrolling can be customized.
+ * @author Olivier
+ */
 public class MarqueeController extends AMessageController {
 	
 	private int marqueeWidth = 40;
@@ -18,12 +23,12 @@ public class MarqueeController extends AMessageController {
 		this.marqueeDelayMs = marqueeDelayMs;
 	}
 	
-	private List<String> getSlippedData(int slip) {
-		List<String> newData = new ArrayList<String>();
-		for (String s : data) {
-			String fix = s.substring(0, slip);
-			s = s.substring(slip) + fix;
-			newData.add(s);
+	private List<Tence> getSlippedData(int slip) {
+		List<Tence> newData = new ArrayList<Tence>();
+		for (Tence s : data) {
+			String fix = s.toString().substring(0, slip);
+			fix = s.toString().substring(slip) + fix;
+			newData.add(new Tence(fix, s.getMaxLen(), s.getSwingAlign(), s.getFiller()));
 		}
 		return newData;
 	}
@@ -36,9 +41,9 @@ public class MarqueeController extends AMessageController {
 			public void run() {
 				int slip = 0;
 				while (continueMarquee) {
-					List<String> newData = getSlippedData(slip);
+					List<Tence> newData = getSlippedData(slip);
 					try { Thread.sleep(marqueeDelayMs); } catch (Throwable t) { }
-					screen.sendMessage(true, newData.toArray(new String[0]));
+					screen.sendMessage(true, newData.toArray(new Tence[0]));
 					slip++;
 					slip = slip % marqueeWidth;
 				}

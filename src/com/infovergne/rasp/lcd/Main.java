@@ -4,16 +4,39 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.apache.log4j.ConsoleAppender;
+import org.apache.log4j.Layout;
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
+import org.apache.log4j.PatternLayout;
+import org.slf4j.LoggerFactory;
+
 import com.infovergne.rasp.lcd.screen.AScreen;
 import com.infovergne.rasp.lcd.screen.LcdScreen;
 import com.infovergne.rasp.lcd.screen.OutScreen;
 import com.pi4j.wiringpi.Lcd;
 
+/**
+ * Startup class.
+ * Use -console to enable simulation mode (uses System.out instead of sending GPIO commands).
+ * 
+ * @author Olivier
+ */
 public class Main {
+	
+	private final static org.slf4j.Logger LOGGER = LoggerFactory.getLogger(Main.class);
 
 	public static final void main(String... args) {
+		initLog4j();
 		Main main = new Main(args);
 		main.start();
+	}
+	
+	private static void initLog4j() {
+		Logger root = Logger.getRootLogger();
+		Layout layout = new PatternLayout("%p %d{yyyy-MM-dd HH:mm:ss,SSS} [%t: (%F:%L)] %m%n");
+		root.addAppender(new ConsoleAppender(layout, ConsoleAppender.SYSTEM_OUT));
+		root.setLevel(Level.INFO);
 	}
 	
 	private final List<String> cliArgs = new ArrayList<String>();
@@ -22,18 +45,17 @@ public class Main {
 	
 	public Main(String... args) {
 		parseArgs(args);
-		System.out.println("Checking Lcd Lib.... " + Lcd.class);
+		LOGGER.debug("Checking Lcd Lib.... " + Lcd.class);
 	}
 	
 	private void start() {
 		getScreen().initialize();
 		if (getScreen().isInitialized()) {
-			System.out.println("LCD correctly initialized :-)");
+			LOGGER.debug("LCD correctly initialized :-)");
 			new DialogController(getScreen()).start();
 		} else {
-			System.err.println("Failed to initialize LCD system properly");
+			LOGGER.error("Failed to initialize LCD system properly");
 		}
-		
 	}
 	
 	private void parseArgs(String... args) {

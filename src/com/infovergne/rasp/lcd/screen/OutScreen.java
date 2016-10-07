@@ -4,8 +4,14 @@ import java.util.Arrays;
 
 import javax.swing.SwingConstants;
 
-import com.infovergne.rasp.lcd.util.LcdUtils;
+import com.infovergne.rasp.lcd.message.Tence;
 
+/**
+ * Simulates an LCD screen using standard output.
+ * Useful for development.
+ * <p>You can activate this screen passing -console argument to command line</p>
+ * @author Olivier
+ */
 public class OutScreen extends AScreen {
 	
 	private static final char BLANK = '@';
@@ -23,21 +29,20 @@ public class OutScreen extends AScreen {
 			Arrays.fill(screen[i], BLANK);
 		}
 		try {
-			Thread.sleep(1000);	
+			Thread.sleep(100);	
 		} catch (Exception e) {
 		}
 	}
 	
 	@Override
-	public void setMessageAt(int row, String message) {
+	public void setMessageAt(int row, Tence message) {
 		if (message == null) {
-			message = "";
+			message = new Tence("", getCols(), SwingConstants.LEFT, BLANK);
 		}
-		message = LcdUtils.buildRow(message, getCols(), SwingConstants.CENTER, BLANK);
 		if (row < 0 || row > getRows()) {
 			return;
 		}
-		char[] cars = message.toCharArray();
+		char[] cars = message.toString().toCharArray();
 		for (int col = 0 ; col < cars.length && col < getCols(); col++) {
 			char c = cars[col];
 			screen[row][col] = c;
