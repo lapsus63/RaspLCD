@@ -15,11 +15,11 @@
         <pathelement location="lib/pi4j-gpio-extension.jar"/>
         <pathelement location="lib/pi4j-service.jar"/>
         <pathelement location="lib/commons-lang3-3.4.jar"/>
-        <pathelement location="lib/sl4j-api-1.7.21.jar"/>
-        <pathelement location="lib/sl4j-log4j12-1.7.21.jar"/>
-        <pathelement location="lib/log4j-1.2.17.jar"/>
         <pathelement location="lib/api/gson-2.3.1.jar"/>
+        <pathelement location="lib/log4j-1.2.17.jar"/>
         <pathelement location="lib/api/twitter4j-core-4.0.4.jar"/>
+        <pathelement location="lib/slf4j-api-1.7.21.jar"/>
+        <pathelement location="lib/slf4j-log4j12-1.7.21.jar"/>
 	</path>
     
     <target name="clean">

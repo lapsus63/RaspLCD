@@ -42,7 +42,7 @@ public class OutScreen extends AScreen {
 		if (row < 0 || row > getRows()) {
 			return;
 		}
-		char[] cars = message.toString().toCharArray();
+		char[] cars = message.getMessageASCII().toCharArray();
 		for (int col = 0 ; col < cars.length && col < getCols(); col++) {
 			char c = cars[col];
 			screen[row][col] = c;

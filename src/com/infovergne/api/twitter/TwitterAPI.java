@@ -55,7 +55,7 @@ public class TwitterAPI {
 			QueryResult result;
 			do {
 				result = twitter.search(query);
-				List<Status> tweets = twitter.getHomeTimeline(new Paging(1, 4));
+				List<Status> tweets = twitter.getHomeTimeline(new Paging(1, 5));
 				for (Status tweet : tweets) {
 					JsonObject jsonTweet = new JsonObject();
 					jsonTweet.addProperty("username", tweet.getUser().getScreenName());

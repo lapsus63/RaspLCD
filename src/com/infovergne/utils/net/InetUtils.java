@@ -1,4 +1,4 @@
-package com.infovergne.rasp.net;
+package com.infovergne.utils.net;
 
 import java.net.Inet4Address;
 import java.net.Inet6Address;

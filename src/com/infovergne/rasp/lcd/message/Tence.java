@@ -51,6 +51,13 @@ public class Tence {
 		return message;
 	}
 
+	public String getMessageASCII() {
+		String message = this.message;
+		message = StringUtils.stripAccents(message);
+		message = message.replace('°', (char)39);
+		return message;
+	}
+
 	public int getMaxLen() {
 		return maxLen;
 	}

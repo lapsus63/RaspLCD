@@ -22,8 +22,9 @@ import com.infovergne.rasp.lcd.message.ScreenMessageController;
 import com.infovergne.rasp.lcd.message.StaticMessageController;
 import com.infovergne.rasp.lcd.message.Tence;
 import com.infovergne.rasp.lcd.screen.AScreen;
-import com.infovergne.rasp.net.InetUtils;
 import com.infovergne.utils.json.JsonUtils;
+import com.infovergne.utils.net.InetUtils;
+import com.infovergne.utils.text.TextUtils;
 
 /**
  * Configures the set of messages to display on the screen.
@@ -96,7 +97,11 @@ public class DialogController implements Observer {
 		if (o instanceof AMessageController) {
 			((AMessageController)o).deleteObserver(this);
 		}
-		incrementAndStart();
+		try {
+			incrementAndStart();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	private AMessageController createMessageGeoloc() {
@@ -163,7 +168,7 @@ public class DialogController implements Observer {
 	}
 
 	private AMessageController createMessageLine() {
-		AMessageController msg = new MarqueeLineController(ctrlLcd, 50L, 12L, TimeUnit.SECONDS);
+		AMessageController msg = new MarqueeLineController(ctrlLcd, 200L, 12L, TimeUnit.SECONDS);
 		msg.add(new Tence(" Welcome ",ctrlLcd.getCols(),SwingConstants.CENTER, ' '))
 			.add(new Tence("Oliver's Raspberry",ctrlLcd.getCols(),SwingConstants.RIGHT, ' '))
 			.add(new Tence("",ctrlLcd.getCols(),SwingConstants.CENTER, '-'))
@@ -177,6 +182,7 @@ public class DialogController implements Observer {
 		if (getTweetData() != null) {
 			try {
 				txt = JsonUtils.getAtPath(tweetData, "tweets[" + index + "]/text").getAsString();
+				txt = TextUtils.smsify(txt);
 				auth = "@" + JsonUtils.getAtPath(tweetData, "tweets[" + index + "]/username").getAsString();
 			} catch (IndexOutOfBoundsException e) {}
 		}
