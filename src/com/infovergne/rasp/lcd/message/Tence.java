@@ -15,8 +15,14 @@ public class Tence {
 	private final int maxLen;
 	private final int swingAlign;
 	private final char filler;
+	private final boolean cleanSpaces;
 	
 	public Tence(String message, int maxLen, int swingAlign, char filler) {
+		this(message, maxLen, swingAlign, filler, true);
+	}
+
+	public Tence(String message, int maxLen, int swingAlign, char filler, boolean cleanSpaces) {
+		this.cleanSpaces = cleanSpaces;
 		this.message = message;
 		this.maxLen = maxLen;
 		this.swingAlign = swingAlign;
@@ -55,7 +61,22 @@ public class Tence {
 		String message = this.message;
 		message = StringUtils.stripAccents(message);
 		message = message.replace('°', (char)39);
-		message = message.replaceAll("\\s", " ");
+		StringBuilder ascii = new StringBuilder();
+		for (char c : message.toCharArray()) {
+			if (c == '#') {
+				ascii.append(String.valueOf((char)127));
+			} else if (c < 127) {
+				ascii.append(String.valueOf(c));
+			} else if (c == '°') {
+				ascii.append(String.valueOf((char)39));
+			} else {
+				ascii.append(String.valueOf(' '));
+			}
+		}
+		message = ascii.toString();
+		if (cleanSpaces) {
+				message= message.replaceAll("\\s+", " ");
+		}
 		return message;
 	}
 

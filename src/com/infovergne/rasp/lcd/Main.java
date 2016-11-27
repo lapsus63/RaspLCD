@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
 import com.infovergne.rasp.lcd.screen.AScreen;
 import com.infovergne.rasp.lcd.screen.LcdScreen;
 import com.infovergne.rasp.lcd.screen.OutScreen;
+import com.infovergne.rasp.lcd.screen.SwingScreen;
 import com.pi4j.wiringpi.Lcd;
 
 /**
@@ -69,6 +70,8 @@ public class Main {
 		if (screen == null) {
 			if (cliArgs.contains("-console")) {
 				screen = new OutScreen(4, 20);
+			} else if (cliArgs.contains("-swing")) {
+				screen = new SwingScreen(4, 20);
 			} else {
 				screen = new LcdScreen(4, 20);
 			}

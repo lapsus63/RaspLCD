@@ -1,6 +1,5 @@
 package com.infovergne.utils.text;
 
-import org.apache.commons.lang3.StringUtils;
 
 public class TextUtils {
 
@@ -10,23 +9,24 @@ public class TextUtils {
 		}
 		message = " " + message;
 		message = message.replaceAll("(?i)j'ai", "g");
-		message = message.replaceAll("(?i) à ", " ");
-		message = message.replaceAll("(?i) la ", " ");
-		message = message.replaceAll("(?i) de ", " ");
-		message = message.replaceAll("(?i) du ", " ");
-		message = message.replaceAll("(?i) en ", " ");
-		message = message.replaceAll("(?i) au ", " ");
 		message = message.replaceAll("(?i) un ", " 1 ");
-		message = message.replaceAll("(?i) fait ", " fé ");
+		message = message.replaceAll("(?i) fait ", " ft ");
 		message = message.replaceAll("(?i) je ", " j ");
 		message = message.replaceAll("(?i) faire ", " fR ");
 		message = message.replaceAll("(?i) petit ", " pt ");
 		message = message.replaceAll("(?i) grand ", " gd ");
-		message = message.replaceAll("(?i) après ", " ap ");
+		message = message.replaceAll("(?i) grand ", " gd ");
+		message = message.replaceAll("(?i) plus ", " + ");
+		message = message.replaceAll("(?i) moins ", " - ");
+		message = message.replaceAll("(?i) fois ", " * ");
 		message = message.replaceAll("(?i) long ", " lg ");
 		message = message.replaceAll("(?i) des ", " d ");
-		message = message.replaceAll("(?i)clermont", "clt");
-		message = message.replaceAll("(?i)ferrand", "fd");
+		message = message.replaceAll("(?i)clermont", "Clt");
+		message = message.replaceAll("(?i) att[^ ]+", " att.");
+		message = message.replaceAll("(?i) tempo[^ ]+", " temp.");
+		message = message.replaceAll("(?i)ferrand", "Fd");
+		message = message.replaceAll("(?i)auvergne", "auv");
+		message = message.replaceAll("(?i)mauvais", "mv");
 		message = message.replaceAll("(?i) part[^ ]+", " part.");
 		message = message.replaceAll("(?i) lum[^ ]+", " lum.");
 		
