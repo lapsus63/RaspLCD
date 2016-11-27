@@ -170,7 +170,7 @@ public class DialogController implements Observer {
 	}
 
 	private AMessageController createAsciiArt() {
-		AMessageController msg = new AsciiArtController(ctrlLcd, 100L, 16L, TimeUnit.SECONDS, "/com/infovergne/rasp/lcd/message/pacman.txt");
+		AMessageController msg = new AsciiArtController(ctrlLcd, 100L, 25L, TimeUnit.SECONDS, "/com/infovergne/rasp/lcd/message/pacman.txt");
 		msg.addObserver(this);
 		return msg;
 	}
