@@ -170,13 +170,13 @@ public class DialogController implements Observer {
 	}
 
 	private AMessageController createAsciiArt() {
-		AMessageController msg = new AsciiArtController(ctrlLcd, 100L, 25L, TimeUnit.SECONDS, "/com/infovergne/rasp/lcd/message/pacman.txt");
+		AMessageController msg = new AsciiArtController(ctrlLcd, 100L, 23L, TimeUnit.SECONDS, "/com/infovergne/rasp/lcd/message/pacman.txt");
 		msg.addObserver(this);
 		return msg;
 	}
 	
 	private AMessageController createMessageLine() {
-		AMessageController msg = new MarqueeLineController(ctrlLcd, 200L, 12L, TimeUnit.SECONDS);
+		AMessageController msg = new MarqueeLineController(ctrlLcd, 200L, 9L, TimeUnit.SECONDS);
 		msg.add(new Tence("", ctrlLcd.getCols(),SwingConstants.LEFT, ' '))
 			.add(new Tence("Infovergne",ctrlLcd.getCols(),SwingConstants.CENTER, ' '))
 			.add(new Tence("(c)2016", ctrlLcd.getCols(), SwingConstants.RIGHT, ' '));
