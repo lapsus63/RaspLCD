@@ -17,6 +17,7 @@ import com.infovergne.api.ipapi.IpAPI;
 import com.infovergne.api.openwm.OpenWeatherMap;
 import com.infovergne.api.twitter.TwitterAPI;
 import com.infovergne.rasp.lcd.message.AMessageController;
+import com.infovergne.rasp.lcd.message.AsciiArtController;
 import com.infovergne.rasp.lcd.message.MarqueeLineController;
 import com.infovergne.rasp.lcd.message.ScreenMessageController;
 import com.infovergne.rasp.lcd.message.StaticMessageController;
@@ -73,10 +74,11 @@ public class DialogController implements Observer {
 
 	public void start() {
 		messages.add(() -> createMessageWelcome());
+		messages.add(() -> createAsciiArt());
+		messages.add(() -> createMessageTime());
 		messages.add(() -> createMessageLine());
 		messages.add(() -> createMessageGeoloc());
 		messages.add(() -> createMessageMeteo());
-		messages.add(() -> createMessageTime());
 		messages.add(() -> createMessageTweeter(0));
 		messages.add(() -> createMessageTweeter(1));
 		messages.add(() -> createMessageTweeter(2));
@@ -167,12 +169,17 @@ public class DialogController implements Observer {
 		return msg;
 	}
 
+	private AMessageController createAsciiArt() {
+		AMessageController msg = new AsciiArtController(ctrlLcd, 100L, 16L, TimeUnit.SECONDS, "/com/infovergne/rasp/lcd/message/pacman.txt");
+		msg.addObserver(this);
+		return msg;
+	}
+	
 	private AMessageController createMessageLine() {
 		AMessageController msg = new MarqueeLineController(ctrlLcd, 200L, 12L, TimeUnit.SECONDS);
-		msg.add(new Tence(" Welcome ",ctrlLcd.getCols(),SwingConstants.CENTER, ' '))
-			.add(new Tence("Oliver's Raspberry",ctrlLcd.getCols(),SwingConstants.RIGHT, ' '))
-			.add(new Tence("",ctrlLcd.getCols(),SwingConstants.CENTER, '-'))
-			.add(new Tence("(c)2016 Infovergne", ctrlLcd.getCols(), SwingConstants.RIGHT, ' '));
+		msg.add(new Tence("", ctrlLcd.getCols(),SwingConstants.LEFT, ' '))
+			.add(new Tence("Infovergne",ctrlLcd.getCols(),SwingConstants.CENTER, ' '))
+			.add(new Tence("(c)2016", ctrlLcd.getCols(), SwingConstants.RIGHT, ' '));
 		msg.addObserver(this);
 		return msg;
 	}

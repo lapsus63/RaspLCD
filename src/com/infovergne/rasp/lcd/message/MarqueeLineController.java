@@ -1,6 +1,5 @@
 package com.infovergne.rasp.lcd.message;
 
-import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -96,7 +95,7 @@ public class MarqueeLineController extends AMessageController {
 		
 		List<Tence> newData = new ArrayList<Tence>();
 		for (StringBuilder s : rows) {
-			newData.add(new Tence(s.toString(), screen.getCols(), SwingConstants.LEFT, ' '));
+			newData.add(new Tence(s.toString(), screen.getCols(), SwingConstants.LEFT, ' ', false));
 		}
 		return newData;
 	}
