@@ -176,7 +176,7 @@ public class DialogController implements Observer {
 	}
 	
 	private AMessageController createMessageLine() {
-		AMessageController msg = new MarqueeLineController(ctrlLcd, 200L, 9L, TimeUnit.SECONDS);
+		AMessageController msg = new MarqueeLineController(ctrlLcd, 200L, 7L, TimeUnit.SECONDS);
 		msg.add(new Tence("", ctrlLcd.getCols(),SwingConstants.LEFT, ' '))
 			.add(new Tence("Infovergne",ctrlLcd.getCols(),SwingConstants.CENTER, ' '))
 			.add(new Tence("(c)2016", ctrlLcd.getCols(), SwingConstants.RIGHT, ' '));
