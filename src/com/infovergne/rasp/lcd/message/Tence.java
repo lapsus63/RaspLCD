@@ -66,7 +66,7 @@ public class Tence {
 			if (c < 127) {
 				ascii.append(String.valueOf(c));
 			} else if (c == '°') {
-				ascii.append(String.valueOf((char)39));
+				ascii.append(String.valueOf((char)39)); /* xyz */
 			} else {
 				ascii.append(String.valueOf(' '));
 			}
