@@ -63,9 +63,7 @@ public class Tence {
 		message = message.replace('°', (char)39);
 		StringBuilder ascii = new StringBuilder();
 		for (char c : message.toCharArray()) {
-			if (c == '#') {
-				ascii.append(String.valueOf((char)127));
-			} else if (c < 127) {
+			if (c < 127) {
 				ascii.append(String.valueOf(c));
 			} else if (c == '°') {
 				ascii.append(String.valueOf((char)39));
