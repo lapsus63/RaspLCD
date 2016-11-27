@@ -25,7 +25,7 @@ public class Tence {
 
 	@Override
 	public String toString() {
-		String s = message.replaceAll("\\s", " ");
+		String s = getMessageASCII();
 		if (s.length() > maxLen) {
 			s = s.substring(0,maxLen);
 		}
@@ -55,6 +55,7 @@ public class Tence {
 		String message = this.message;
 		message = StringUtils.stripAccents(message);
 		message = message.replace('°', (char)39);
+		message = message.replaceAll("\\s", " ");
 		return message;
 	}
 

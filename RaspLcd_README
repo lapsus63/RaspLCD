@@ -1,3 +1,14 @@
+Installation sur le Raspberry :
+===============================
+== nouveau projet :
+git clone https://git.infovergne.com/Rasp_LCD.git
+== update des sources :
+git pull
+== rebuild du JAR :
+/home/pi/apache-ant-1.9.7/bin/ant -f build.xml build jar
+cp RaspLcd.jar /home/pi/
+
+
 Script /etc/init.d/lcd-screen.sh :
 ==================================
 #!/bin/sh

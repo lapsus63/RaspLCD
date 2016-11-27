@@ -47,7 +47,7 @@ public class ScreenMessageController extends AMessageController {
 		
 		while (currentIndex < data.size()) {
 			currentMessage = data.get(currentIndex);
-			String[] words = currentMessage.getMessage().split(" ");
+			String[] words = currentMessage.getMessageASCII().split(" ");
 			String currentRow = "";
 			int i = 0;
 			for (i = 0 ; i < words.length ; i++) {

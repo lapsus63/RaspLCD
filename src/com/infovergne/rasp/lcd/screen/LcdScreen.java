@@ -75,7 +75,7 @@ public class LcdScreen extends AScreen {
 			return;
 		}
 		Lcd.lcdPosition(lcdHandle, 0, row);
-		Lcd.lcdPuts(lcdHandle, message.getMessageASCII());		
+		Lcd.lcdPuts(lcdHandle, message.toString());		
 	}
 	
 	@Override

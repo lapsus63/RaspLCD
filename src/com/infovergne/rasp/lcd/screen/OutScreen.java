@@ -1,7 +1,5 @@
 package com.infovergne.rasp.lcd.screen;
 
-import java.util.Arrays;
-
 import javax.swing.SwingConstants;
 
 import com.infovergne.rasp.lcd.message.Tence;
@@ -25,13 +23,13 @@ public class OutScreen extends AScreen {
 	
 	@Override
 	public void cleanScreen() {
-		for (int i = 0 ; i < rows ; i++) {
-			Arrays.fill(screen[i], BLANK);
-		}
-		try {
-			Thread.sleep(100);	
-		} catch (Exception e) {
-		}
+//		for (int i = 0 ; i < rows ; i++) {
+//			Arrays.fill(screen[i], BLANK);
+//		}
+//		try {
+//			Thread.sleep(100);	
+//		} catch (Exception e) {
+//		}
 	}
 	
 	@Override
@@ -42,7 +40,7 @@ public class OutScreen extends AScreen {
 		if (row < 0 || row > getRows()) {
 			return;
 		}
-		char[] cars = message.getMessageASCII().toCharArray();
+		char[] cars = message.toString().toCharArray();
 		for (int col = 0 ; col < cars.length && col < getCols(); col++) {
 			char c = cars[col];
 			screen[row][col] = c;

@@ -22,8 +22,8 @@ public class TextUtils {
 		message = message.replaceAll("(?i) faire ", " fR ");
 		message = message.replaceAll("(?i) petit ", " pt ");
 		message = message.replaceAll("(?i) grand ", " gd ");
-		message = message.replaceAll("(?i) après ", " Ap ");
-		message = message.replaceAll("(?i) long ", " Lg ");
+		message = message.replaceAll("(?i) après ", " ap ");
+		message = message.replaceAll("(?i) long ", " lg ");
 		message = message.replaceAll("(?i) des ", " d ");
 		message = message.replaceAll("(?i)clermont", "clt");
 		message = message.replaceAll("(?i)ferrand", "fd");

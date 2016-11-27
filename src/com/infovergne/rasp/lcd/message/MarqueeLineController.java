@@ -68,7 +68,7 @@ public class MarqueeLineController extends AMessageController {
 		StringBuilder sb = new StringBuilder();
 		int whiteChars = screen.getCols() / charWidth;
 		for (Tence d : data) {
-			String message = Normalizer.normalize(d.getMessage(), Normalizer.Form.NFD).toLowerCase();
+			String message = d.getMessageASCII().toLowerCase();
 			sb.append(message);
 			sb.append(String.format("%1$" + whiteChars + "s", " "));
 		}
