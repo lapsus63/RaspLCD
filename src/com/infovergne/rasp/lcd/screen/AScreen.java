@@ -3,6 +3,7 @@ package com.infovergne.rasp.lcd.screen;
 import com.infovergne.rasp.lcd.message.Tence;
 
 /**
+ * Hello WOrld
  * Defines an output stream.
  * Could be System.out, or the LCD screen.
  * <p>A Screen is delimitated by a row count and a column count</p>
